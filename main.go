@@ -11,8 +11,8 @@ import (
 )
 
 const (
-	version       string = "v0.0.1"
-	npubPrefix    string = "npub14k"
+	version       string = "v0.0.2"
+	npubPrefix    string = "npub1"
 	bech32charset string = "qpzry9x8gf2tvdw0s3jn54khce6mua7l"
 )
 
