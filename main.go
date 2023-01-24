@@ -13,7 +13,7 @@ import (
 const (
 	version       string = "v0.0.1"
 	npubPrefix    string = "npub14k"
-	bech32charset string = "qpzry9x8gf2tvdw0s3jn54khce6mua7l"
+	bech32charset string = "023456789acdefghjklmnpqrstuvwxyz"
 )
 
 func isBech32(s string) bool {
@@ -43,7 +43,7 @@ func main() {
 	// validate target
 	target = os.Args[1]
 	if !isBech32(target) {
-		fmt.Printf("Error: target '%s' is invalid\nThe valid character set for an encoded npub is bech32. Try again with only the following characters: \n\n	qpzry9x8gf2tvdw0s3jn54khce6mua7l\n\n", target)
+		fmt.Printf("Error: target '%s' is invalid/nThe valid character set for an encoded npub is bech32. Try again with only the following characters: \n\n	023456789acdefghjklmnpqrstuvwxyz\n\n", target)
 		os.Exit(1)
 	}
 
