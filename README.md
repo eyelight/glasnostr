@@ -95,7 +95,7 @@ and then build it
 $ go build -o glasnostr main.go
 ```
 now you can either invoke it with `./glasnostr` from the repo directory, or, put it in your `PATH`, as above
-#### Build and install with `make`
+### Build and install with `make`
 If you have `make`, you can use the Makefile included in the repo, using either `local` or `local-install`
 
 You can build glasnostr inside a `build` directory within the repo
