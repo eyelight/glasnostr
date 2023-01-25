@@ -3,17 +3,21 @@ Mine a vanity prefix for your Nostr npub
 
 ## Installation
 Download the latest binary for your OS & architecture from [here](https://github.com/eyelight/glasnostr/releases). You should see binaries available for:
-- `linux/amd64` for modern intel & amd chips
-- `linux/arm64` for eg Raspberry Pi
+- `linux/amd64` for modern Intel & AMD
+- `linux/arm64` for Raspberry Pi, etc
 - `darwin/amd64` for Intel macs
 - `darwin/arm64` for macs on Apple Silicon (M1, etc)
 - If you are using Windows, I don't have time to explain it to you
 
-After downloading, give it execution permissions
+Extract the file from the archive
+```
+$ tar -xvf {archive-filename}.tar.gz
+```
+Then, give it execution permissions
 ```
 $ chmod +x glasnostr
 ```
-and then move it somewhere into your `PATH`, such as `/usr/local/bin`
+and then move it somewhere into your `PATH`, such as `/usr/local/bin` (may require your admin password)
 ```
 $ mv glasnostr /usr/local/bin
 ```
@@ -91,11 +95,22 @@ and then build it
 $ go build -o glasnostr main.go
 ```
 now you can either invoke it with `./glasnostr` from the repo directory, or, put it in your `PATH`, as above
+#### Build and install with `make`
+If you have `make`, you can use the Makefile included in the repo, using either `local` or `local-install`
+
+You can build glasnostr inside a `build` directory within the repo
+```
+$ make local
+```
+Or, you can install it to `/usr/local/bin/glasnostr` (symlinked from `./build`). The following will ask you for a `sudo` password because writing to `/usr/local/bin` usually requires elevated privileges. Check the Makefile before executing to ensure there is no funny business.
+```
+$ make local-install
+```
 
 
 
 ## Miscellaneous
-The character set for a valid npub is `qpzry9x8gf2tvdw0s3jn54khce6mua7l` so only mine prefixes with these characters. (Yes, 'foo' has been illegal this whole time). 
+The character set for a valid npub is `023456789acdefghjklmnpqrstuvwxyz` so only mine prefixes with these characters. (Yes, 'foo' has been illegal this whole time). 
 
 If you do find 'cherrymerkle69' please let me know on Twitter ([@eyelightyou](https://twitter.com/eyelightyou)).
 
