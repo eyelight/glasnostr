@@ -112,6 +112,4 @@ $ make local-install
 ## Miscellaneous
 The character set for a valid npub is `023456789acdefghjklmnpqrstuvwxyz` so only mine prefixes with these characters. (Yes, 'foo' has been illegal this whole time). 
 
-If you do find 'cherrymerkle69' please let me know on Twitter ([@eyelightyou](https://twitter.com/eyelightyou)).
-
-BTC tips much appreciated. Address is on my github page https://github.com/eyelight
+If you do find 'cherrymerkle69' please let me know on Twitter ([@eyelightyou](https://twitter.com/eyelightyou)) or on Nostr npub1c0chardxwju98phrz3d7z9nkvahjcgssvwn8s9wmp9x093492yqqltdmce ⚡ tips much appreciated!
