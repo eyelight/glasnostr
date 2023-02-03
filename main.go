@@ -5,13 +5,14 @@ import (
 	"os"
 	"strconv"
 	"strings"
+	"time"
 
 	"github.com/nbd-wtf/go-nostr"
 	"github.com/nbd-wtf/go-nostr/nip19"
 )
 
 const (
-	version       string = "v0.0.2"
+	version       string = "v0.0.3"
 	npubPrefix    string = "npub1"
 	bech32charset string = "023456789acdefghjklmnpqrstuvwxyz"
 )
@@ -28,8 +29,8 @@ func isBech32(s string) bool {
 func main() {
 	var target string
 	var tries string
-	var limit int
-	var hits uint
+	var limit uint64
+	var hits uint64
 
 	// whats up
 	fmt.Printf("Glasnostr (%s)\nMine a vanity prefix for your Nostr npub\nhttps://github.com/eyelight/glasnostr\n\n", version)
@@ -57,13 +58,22 @@ func main() {
 			fmt.Printf("Cannot parse limit (stay positive): \n%s\n\n", e.Error())
 			os.Exit(1)
 		}
-		limit = int(l)
+		limit = l
 	}
+	startTime := time.Now()
 
-	fmt.Printf("Starting %d attempts for prefix '%s'\n\n", limit, target)
+	fmt.Printf("Starting %d attempts for prefix '%s' at %s\n\n", limit, target, startTime.Local().Format(time.RFC822))
+
+	mult := time.Second
 
 	// find target
-	for i := 0; i < limit; i++ {
+	for i := uint64(0); i < limit; i++ {
+		// report tries & time
+		if time.Since(startTime) > mult && i%uint64(10000) == 0 {
+			fmt.Printf("%d tries after %s...\n", i, time.Since(startTime).Round(time.Second))
+			mult *= 2
+		}
+
 		// generate keys
 		sk := nostr.GeneratePrivateKey()
 		pk, pkerr := nostr.GetPublicKey(sk)
@@ -89,7 +99,7 @@ func main() {
 			if err != nil {
 				fmt.Printf("Error encoding NIP-19 nsec from secret key: %s\n", err.Error())
 			}
-			fmt.Printf("Glasnostr found '%s' after %d tries:\n	(pub)	%s\n	(sec)	%s\n	(npub)	%s\n	(nsec)	%s\n\n", target, i, pk, sk, npub, nsec)
+			fmt.Printf("Glasnostr found '%s' after %d tries (%s):\n	(pub)	%s\n	(sec)	%s\n	(npub)	%s\n	(nsec)	%s\n\n", target, i, time.Since(startTime.Round(time.Second)), pk, sk, npub, nsec)
 		}
 	}
 	if hits == 0 {
