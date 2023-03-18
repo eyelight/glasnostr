@@ -6,22 +6,22 @@ clean:
 build:
 	mkdir build
 
-linux-amd64:
+linux-amd64: clean build
 	mkdir build/linuxamd64
 	env GOOS=linux GOARCH=amd64 go build -o build/linuxamd64/glasnostr main.go
-	tar -czf build/linuxamd64/glasnostr-linux-amd64.tar.gz build/linuxamd64/glasnostr
-linux-arm64:
+	cd build/linuxamd64; tar -czf glasnostr-linux-amd64.tar.gz glasnostr
+linux-arm64: clean build
 	mkdir build/linuxarm64
 	env GOOS=linux GOARCH=arm64 go build -o build/linuxarm64/glasnostr main.go
-	tar -czf build/linuxarm64/glasnostr-linux-arm64.tar.gz build/linuxarm64/glasnostr
-mac-amd64:
+	cd build/linuxarm64; tar -czf glasnostr-linux-arm64.tar.gz glasnostr
+mac-amd64: clean build
 	mkdir build/darwinamd64
 	env GOOS=darwin GOARCH=amd64 go build -o build/darwinamd64/glasnostr main.go
-	tar -czf build/darwinamd64/glasnostr-mac-amd64.tar.gz build/darwinamd64/glasnostr
-mac-arm64:
+	cd build/darwinamd64; tar -czf glasnostr-mac-amd64.tar.gz glasnostr
+mac-arm64: clean build
 	mkdir build/darwinarm64
 	env GOOS=darwin GOARCH=amd64 go build -o build/darwinarm64/glasnostr main.go
-	tar -czf build/darwinarm64/glasnostr-mac-arm64.tar.gz build/darwinarm64/glasnostr
+	cd build/darwinarm64; tar -czf glasnostr-mac-arm64.tar.gz glasnostr
 local: clean build
 	go build -o build/glasnostr main.go
 local-install: clean build
