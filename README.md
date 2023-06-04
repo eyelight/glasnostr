@@ -10,30 +10,30 @@ Download the latest binary for your OS & architecture from [here](https://github
 - If you are using Windows, I don't have time to explain it to you
 
 Extract the file from the archive
-```
-$ tar -xvf {archive-filename}.tar.gz
+```bash
+tar -xvf {archive-filename}.tar.gz
 ```
 Then, give it execution permissions
-```
-$ chmod +x glasnostr
+```bash
+chmod +x glasnostr
 ```
 and then move it somewhere into your `PATH`, such as `/usr/local/bin` (may require your admin password)
-```
-$ mv glasnostr /usr/local/bin
+```bash
+mv glasnostr /usr/local/bin
 ```
 
 ## Usage
 Glasnostr is simple. Just invoke it on the command line with your target prefix. 
-```
-$ glasnostr foo
+```bash
+glasnostr foo
 ```
 Or, if the executable is not in your `$PATH`, try this
-```
-$ ./glasnostr foo
+```bash
+./glasnostr foo
 ```
 You can also specify a limit to the number of attempts. The default is 21 million.
-```
-$ glasnostr foo 50000
+```bash
+glasnostr foo 50000
 ```
 
 ## Output
@@ -70,41 +70,41 @@ Starting 21000000 attempts for prefix 'sn0wden'
 
 ## Privacy
 As shown above (keys are fake), successful output will display private keys on the screen in plaintext, so you might want to redirect the output into a file using `>` (note that this will overwrite `newfile.txt`).
-```
-$ glasnostr foo 50000 > newfile.txt
+```bash
+glasnostr foo 50000 > newfile.txt
 ```
 You can append to an existing file by redirecting with `>>` (append) instead of `>` (overwrite). 
-```
-$ glasnostr foo >> exsistingfile.txt
+```bash
+glasnostr foo >> exsistingfile.txt
 ```
 
 ## Building from Source
 You can build from source assuming you have a Go environment set up.
 
 Navigate to your Golang `src` directory, which is usually `~/go/src`
-```
-$ cd ~/go/src
+```bash
+cd ~/go/src
 ```
 Clone the repo & navigate into it
-```
-$ git clone https://github.com/eyelight/glasnostr
-$ cd glasnostr
+```bash
+git clone https://github.com/eyelight/glasnostr
+cd glasnostr
 ```
 and then build it
-```
-$ go build -o glasnostr main.go
+```bash
+go build -o glasnostr main.go
 ```
 now you can either invoke it with `./glasnostr` from the repo directory, or, put it in your `PATH`, as above
 ### Build and install with `make`
 If you have `make`, you can use the Makefile included in the repo, using either `local` or `local-install`
 
 You can build glasnostr inside a `build` directory within the repo
-```
-$ make local
+```bash
+make local
 ```
 Or, you can install it to `/usr/local/bin/glasnostr` (symlinked from `./build`). The following will ask you for a `sudo` password because writing to `/usr/local/bin` usually requires elevated privileges. Check the Makefile before executing to ensure there is no funny business.
 ```
-$ make local-install
+make local-install
 ```
 
 
